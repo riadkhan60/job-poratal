@@ -6,8 +6,9 @@ import GridColumn from '../Components/GridColumn';
 import frormStyle from './FormStyle';
 import UiButton from '../Components/UiButton';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
+import { Link, redirect, useActionData, useSubmit } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { createUser } from '../Services/AuthenticationApis';
 
 function AccountRegistrationForm() {
   const {
@@ -17,13 +18,17 @@ function AccountRegistrationForm() {
     getValues,
   } = useForm();
 
-  function success(data) {
-    console.log(data);
+  const submit = useSubmit();
+  const actionData = useActionData();
+
+  console.log(actionData);
+  async function success(data) {
+    submit(data, { method: 'post' });
   }
 
   return (
     <div>
-      <GridColumn height={'100vh'}>
+      <GridColumn height={'90vh'}>
         <Paper elevation={1} style={frormStyle.stylePaper}>
           <GridColumn>
             <FormHeader text={'Create new account'} />
@@ -41,6 +46,7 @@ function AccountRegistrationForm() {
                     type={'email'}
                     label={'Email'}
                     error={errors?.email}
+                    emailExist={actionData =='Error'}
                   />
                   <Inputfields
                     register={register}
@@ -68,6 +74,24 @@ function AccountRegistrationForm() {
       </GridColumn>
     </div>
   );
+}
+
+export async function action({ request }) {
+  const data = await request.formData();
+  const covertedData = Object.fromEntries(data);
+  const user = {
+    name: covertedData.username,
+    email: covertedData.email,
+    password: covertedData.password,
+  };
+  try {
+    const response = await createUser(user);
+    console.log(response);
+  } catch (err) {
+    return err.message;
+  }
+
+  return redirect('/login');
 }
 
 export default AccountRegistrationForm;

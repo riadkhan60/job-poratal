@@ -7,6 +7,7 @@ function Inputfields({
   required,
   error,
   getValues = undefined,
+  emailExist = false,
 }) {
   const data = type === 'text' ? 'username' : type;
   return (
@@ -17,8 +18,15 @@ function Inputfields({
         variant="standard"
         fullWidth
         required={required || error?.message === 'Required'}
-        error={error?.message ? true : false}
-        helperText={error?.message !== 'Required' ? error?.message : ''}
+        error={
+          emailExist
+            ? true
+            : error?.message
+            ? true
+            : false
+        }
+        helperText={ emailExist
+            ? 'already a account registred with this email':error?.message !== 'Required' ? error?.message : ''}
         type={type === 'confirmPassword' ? 'password' : type}
         {...register(data, {
           required: 'Required',
