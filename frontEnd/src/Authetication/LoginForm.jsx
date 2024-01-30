@@ -14,7 +14,6 @@ import Stack from '@mui/material/Stack';
 import Inputfields from '../Components/Inputfields';
 import FormHeader from '../Components/FormHeader';
 import GridColumn from '../Components/GridColumn';
-import frormStyle from './FormStyle';
 import UiButton from '../Components/UiButton';
 import { useForm } from 'react-hook-form';
 import { loginUser } from '../Services/AuthenticationApis';
@@ -66,13 +65,13 @@ function LoginForm() {
           sx={{
             padding: '3rem 4rem',
             width: {
-              lg: '400px'
+              lg: '400px',
             },
           }}
         >
           <GridColumn>
             <FormHeader text={'Login to your account'} />
-            <Box sx={frormStyle.inputContainer}>
+            <Box sx={{ width: '100%', marginTop: '10px' }}>
               <form onSubmit={handleSubmit(success)}>
                 <Grid container sx={{ gap: '1rem' }} direction={'column'}>
                   <Inputfields

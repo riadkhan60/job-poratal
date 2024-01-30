@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Inputfields from '../Components/Inputfields';
 import FormHeader from '../Components/FormHeader';
 import GridColumn from '../Components/GridColumn';
-import frormStyle from './FormStyle';
 import UiButton from '../Components/UiButton';
 import Typography from '@mui/material/Typography';
 import { Link, redirect, useActionData, useNavigation, useSubmit } from 'react-router-dom';
@@ -43,7 +42,7 @@ function AccountRegistrationForm() {
         >
           <GridColumn>
             <FormHeader text={'Create new account'} />
-            <Box sx={frormStyle.inputContainer}>
+            <Box sx={{ width: '100%', marginTop: '10px' }}>
               <form onSubmit={handleSubmit(success)}>
                 <Grid container sx={{ gap: '1rem' }} direction={'column'}>
                   <Inputfields
