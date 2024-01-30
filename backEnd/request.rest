@@ -1,0 +1,45 @@
+###
+GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjp7Im5hbWUiOiJyaWFtcyIsInBhc3N3b3JkIjoiJDJiJDEwJHBpazIvWGpsbERpQzhmcE1WOXQ0VS5lZUR2MFl1ekN3YXlpeFU5TFNOb1pQYnUwRDUxNGhpIiwiZW1haWwiOiJraGFucmlkYWQ2MEBnbWFpbC5jb20ifSwiaWF0IjoxNzA2NDg4MDc0fQ.cmKpXdH4r-sG_PhgbWbf3qCPNmzBEfTiHigUrZzvUoY
+###
+
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "riams",
+  "email": "khanridad60@gmail.com",
+  "password": "60602"
+}
+###
+
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+  "name": "riams",
+  "password": "60602",
+  "email": "khanridad60@gmail.com"
+}
+
+###
+GET http://localhost:3000/users/all
+
+
+###
+GET http://localhost:3000/jobs/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjp7Im5hbWUiOiJyaWFtcyIsInBhc3N3b3JkIjoiJDJiJDEwJDRXSlFWYTIxSHZFOC4wMC9OYjUuMS43ZVVhVldNWXp3QTlJUlZJZnRoU0p3YWRXcmVGMnQ2IiwiZW1haWwiOiJraGFucmlkYWQ2MEBnbWFpbC5jb20ifSwiaWF0IjoxNzA2NTY1NjgyfQ.ELqAk4g-0V5D_9z2v-i9FJH6nL5FiXlmVfjEFWKn444
+
+
+###
+POST http://localhost:3000/jobs/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjp7Im5hbWUiOiJyaWFtcyIsInBhc3N3b3JkIjoiJDJiJDEwJFVCaG9uOGgvaXYwQzB3THRsM244TnVpMGNEcEd0WWFHSklSaEJGYkJWVzN0UkkuWUphd00uIiwiZW1haWwiOiJraGFucmlkYWQ2MEBnbWFpbC5jb20ifSwiaWF0IjoxNzA2NTY5OTk0fQ.G8tR0H4yfT-kpQUgqKiCbwHDDj0ahzcBQc_KPI3ZfdQ
+
+{
+  "jobTitle": "Software Developer",
+  "jobDescription": "Tech Co.",
+  "imageLink": "City",
+  "requiredSkills": "Exciting opportunity for a software developer!"
+}
