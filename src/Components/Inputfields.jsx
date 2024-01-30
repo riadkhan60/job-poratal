@@ -6,9 +6,12 @@ function Inputfields({
   type,
   required,
   error,
+  state,
   getValues = undefined,
   emailExist = false,
 }) {
+
+  const disabled = state === 'submitting'
   const data = type === 'text' ? 'username' : type;
   return (
     <div key={type}>
@@ -17,6 +20,7 @@ function Inputfields({
         label={label}
         variant="standard"
         fullWidth
+        disabled={disabled}
         required={required || error?.message === 'Required'}
         error={
           emailExist

@@ -4,9 +4,13 @@ import Signup from './Pages/Signup';
 import ErrorPage from './Pages/ErrorPage';
 import AppLayout from './UILayout/AppLayout';
 import App from './App';
-import Home, { loader as homeLoader } from './Pages/Home';
+import Home from './Pages/Home';
 import { action as actionSignup } from './Authetication/AccountRegistrationForm';
 import { action as actionLogin } from './Authetication/LoginForm';
+import { action as createJobAction } from './CreateJob/CreateJobForm';
+import CreateJob from './Pages/CreateJob';
+import JobView, { loader as jobLoader } from './Pages/JobView';
+import JobViewDemo from './Pages/JobeViewDemo';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +29,20 @@ const router = createBrowserRouter([
           {
             path: 'home',
             element: <Home />,
-            loader: homeLoader
+          },
+          {
+            path: 'job/:jobId',
+            element: <JobView />,
+            loader: jobLoader
+          },
+          {
+            path: 'job/demo',
+            element: <JobViewDemo />,
+          },
+          {
+            path: 'createjobs',
+            element: <CreateJob />,
+            action: createJobAction
           },
         ],
       },

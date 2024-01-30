@@ -1,12 +1,13 @@
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import Inputfields from '../Components/Inputfields';
 import FormHeader from '../Components/FormHeader';
 import GridColumn from '../Components/GridColumn';
 import frormStyle from './FormStyle';
 import UiButton from '../Components/UiButton';
 import Typography from '@mui/material/Typography';
-import { Link, redirect, useActionData, useSubmit } from 'react-router-dom';
+import { Link, redirect, useActionData, useNavigation, useSubmit } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { createUser } from '../Services/AuthenticationApis';
 
@@ -17,6 +18,8 @@ function AccountRegistrationForm() {
     formState: { errors },
     getValues,
   } = useForm();
+
+  const { state } = useNavigation()
 
   const submit = useSubmit();
   const actionData = useActionData();
@@ -29,10 +32,18 @@ function AccountRegistrationForm() {
   return (
     <div>
       <GridColumn height={'90vh'}>
-        <Paper elevation={1} style={frormStyle.stylePaper}>
+        <Paper
+          elevation={1}
+          sx={{
+            padding: '3rem 4rem',
+            width: {
+              lg: '400px',
+            },
+          }}
+        >
           <GridColumn>
             <FormHeader text={'Create new account'} />
-            <div style={frormStyle.inputContainer}>
+            <Box sx={frormStyle.inputContainer}>
               <form onSubmit={handleSubmit(success)}>
                 <Grid container sx={{ gap: '1rem' }} direction={'column'}>
                   <Inputfields
@@ -40,13 +51,15 @@ function AccountRegistrationForm() {
                     type={'text'}
                     label={'User Name'}
                     error={errors?.username}
+                    state={state}
                   />
                   <Inputfields
                     register={register}
                     type={'email'}
                     label={'Email'}
                     error={errors?.email}
-                    emailExist={actionData =='Error'}
+                    emailExist={actionData == 'Error'}
+                    state={state}
                   />
                   <Inputfields
                     register={register}
@@ -54,6 +67,7 @@ function AccountRegistrationForm() {
                     label={'password'}
                     error={errors?.password}
                     getValues={getValues}
+                    state={state}
                   />
                   <Inputfields
                     register={register}
@@ -61,14 +75,15 @@ function AccountRegistrationForm() {
                     label={'Confirm password'}
                     error={errors?.confirmPassword}
                     getValues={getValues}
+                    state={state}
                   />
-                  <UiButton>Sign up</UiButton>
+                  <UiButton state={state}>Sign up</UiButton>
                   <Typography variant="caption">
                     Already Have a Account ?<Link to={'/login'}> Login</Link>
                   </Typography>
                 </Grid>
               </form>
-            </div>
+            </Box>
           </GridColumn>
         </Paper>
       </GridColumn>
@@ -78,11 +93,11 @@ function AccountRegistrationForm() {
 
 export async function action({ request }) {
   const data = await request.formData();
-  const covertedData = Object.fromEntries(data);
+  const convertedData = Object.fromEntries(data);
   const user = {
-    name: covertedData.username,
-    email: covertedData.email,
-    password: covertedData.password,
+    name: convertedData.username,
+    email: convertedData.email,
+    password: convertedData.password,
   };
   try {
     const response = await createUser(user);

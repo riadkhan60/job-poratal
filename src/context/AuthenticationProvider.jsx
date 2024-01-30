@@ -27,6 +27,7 @@ function AuthenticationProvider({ children }) {
 
   function logout() {
     dispatch({ type: 'logout', payload: null });
+    localStorage.removeItem('access_token');
   }
 
   return (
