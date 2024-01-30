@@ -1,6 +1,6 @@
 export async function createUser(user) {
   try {
-    const res = await fetch('http://localhost:3000/users', {
+    const res = await fetch('https://job-portal-server-swbw.onrender.com/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -17,13 +17,16 @@ export async function createUser(user) {
 
 export async function loginUser(user) {
   try {
-    const res = await fetch('http://localhost:3000/users/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const res = await fetch(
+      'https://job-portal-server-swbw.onrender.com/users/login',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
       },
-      body: JSON.stringify(user),
-    });
+    );
 
     const users = await res.json();
     return users;
@@ -34,12 +37,15 @@ export async function loginUser(user) {
 
 export async function getUser(token) {
   try {
-    const res = await fetch('http://localhost:3000/users', {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const res = await fetch(
+      'https://job-portal-server-swbw.onrender.com/users',
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
 
     if (res.ok === false) {
       throw new Error('there was an error fetching user');

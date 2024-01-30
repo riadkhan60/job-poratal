@@ -1,13 +1,16 @@
 export async function createJob(token, newJobData) {
   try {
-    const res = await fetch('http://localhost:3000/jobs/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+    const res = await fetch(
+      'https://job-portal-server-swbw.onrender.com/jobs/add',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(newJobData),
       },
-      body: JSON.stringify(newJobData),
-    });
+    );
     const data = await res.json();
    
   } catch (e) {
@@ -17,10 +20,13 @@ export async function createJob(token, newJobData) {
 
 export async function getJobs(token) {
   try {
-    const res = await fetch('http://localhost:3000/jobs/all', {
-      method: 'GET',
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await fetch(
+      'https://job-portal-server-swbw.onrender.com/jobs/all',
+      {
+        method: 'GET',
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
 
     if (res.ok === false) {
       throw new Error('there was an error fetching user');
@@ -34,10 +40,13 @@ export async function getJobs(token) {
 
 export async function getJob(token, id) {
   try {
-    const res = await fetch(`http://localhost:3000/jobs/${id}`, {
-      method: 'GET',
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await fetch(
+      `https://job-portal-server-swbw.onrender.com/jobs/${id}`,
+      {
+        method: 'GET',
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
 
     if (res.ok === false) {
       throw new Error('there was an error fetching user');
@@ -52,10 +61,13 @@ export async function getJob(token, id) {
 
 export async function deleteJob(token, id) {
   try {
-    const res = await fetch(`http://localhost:3000/jobs/delete/${id}`, {
-      method: 'DELETE',
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const res = await fetch(
+      `https://job-portal-server-swbw.onrender.com/jobs/delete/${id}`,
+      {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
 
     if (!res.ok) {
       // If the response status is not ok, throw an error
