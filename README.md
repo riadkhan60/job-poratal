@@ -19,7 +19,7 @@ Project name - job portal
  - [Live Project - https://job-portal60.netlify.app/](https://job-portal60.netlify.app/login)
  - [Back End deployment - https://job-portal-server-swbw.onrender.com ](https://job-portal-server-swbw.onrender.com/)
 
-Since server running on a low computing power, it may take some time create a account or sending a request to Api.
+Since server is running on a low computing power, it may take some time to create a new account or sending anyother requests to Api.
 
 ## Contact
 
